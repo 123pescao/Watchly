@@ -41,7 +41,7 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY", "supersecretkey")
 
-    allowed_origins = os.getenv("FRONTEND_URL", "http://localhost:3000,https://watchly-app.pages.dev").split(",")
+    allowed_origins = os.getenv("FRONTEND_URL", "http://localhost:3000,https://watchly.tech,https://www.watchly.tech,https://watchly-app.pages.dev").split(",")
 
     CORS(app, resources={r"/*": {"origins": allowed_origins}},
             supports_credentials=True,
@@ -75,6 +75,10 @@ def create_app():
     @app.route("/status", methods=['GET'])
     def status():
         return jsonify({"message": "Server is running"}), 200
+
+    @app.route("/api/health", methods=["GET"])
+    def health_check():
+        return jsonify({"status": "ok"}), 200
 
     for rule in app.url_map.iter_rules():
         print(f"{rule.endpoint}: {rule.rule}")
