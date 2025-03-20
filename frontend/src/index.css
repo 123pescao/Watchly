@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0a0a0a; /* Slightly lighter black for better contrast */
+  color: #ffffff; /* White text for readability */
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0a0a0a; /* Consistent background */
+  flex-grow: 1;
+}
+
+/* Code styles */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  background-color: #1e1e1e; /* Dark background for code blocks */
+  color: #d4d4d4; /* Light text for code */
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Custom Styles for Settings Component */
+.settings-container {
+  @apply max-w-7xl mx-auto p-6;
+}
+
+.settings-header h1 {
+  @apply text-3xl font-bold mb-8 text-white;
+}
+
+/* Tabs Styling */
+.settings-tabs-list {
+  @apply flex gap-4 mb-8;
+}
+
+.settings-tabs-list button {
+  @apply px-4 py-2 rounded-lg bg-gray-800 text-gray-300 transition-colors hover:bg-primary hover:text-white;
+}
+
+/* Settings Card */
+.settings-card {
+  @apply bg-gray-900 p-6 rounded-lg mb-6;
+}
+
+.settings-card h2 {
+  @apply text-xl font-semibold mb-4 flex items-center gap-2 text-white;
+}
+
+.settings-card h2 .icon {
+  @apply w-5 h-5 text-white;
+}
+
+/* Form Styling */
+.settings-form .form-group {
+  @apply mb-4;
+}
+
+.settings-form label {
+  @apply block text-sm text-gray-400 mb-2;
+}
+
+.settings-form input,
+.settings-form select {
+  @apply w-full px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-primary;
+}
+
+/* Notification Settings */
+.notification-settings .notification-item {
+  @apply flex justify-between items-center py-3 border-b border-gray-800;
+}
+
+.notification-settings .notification-item:last-child {
+  @apply border-b-0;
+}
+
+.notification-settings .notification-item .icon {
+  @apply mr-2 text-gray-400;
+}
+
+/* API Settings */
+.api-key-input {
+  @apply flex gap-2 mb-2;
+}
+
+.api-key-input input {
+  @apply flex-1;
+}
+
+.api-key-input button {
+  @apply px-3 py-2 bg-gray-800 rounded-lg transition-colors hover:bg-primary hover:text-white;
+}
+
+.usage-bar {
+  @apply w-full h-2 bg-gray-800 rounded-full overflow-hidden;
+}
+
+.usage-progress {
+  @apply h-full bg-primary;
+}
+
+/* Danger Zone */
+.danger-zone {
+  @apply border border-red-500 bg-red-500/10;
+}
+
+.danger-zone h2 {
+  @apply text-red-500;
+}
+
+.danger-zone button {
+  @apply bg-red-500 text-white hover:bg-red-600;
+}
+
+/* Actions */
+.settings-actions {
+  @apply flex justify-end gap-4 mt-6;
+}
+
+.settings-actions button {
+  @apply px-4 py-2 rounded-lg bg-primary text-white transition-colors hover:bg-primary/90;
+}
+
+.logout-button {
+  @apply bg-transparent text-red-500 border border-red-500 hover:bg-red-500/10;
+}
+:root {
+  --background: 0 0% 100%; /* Light mode background */
+  --foreground: 222.2 84% 4.9%; /* Light mode text */
+
+  --primary: 221.2 83.2% 53.3%; /* Primary color */
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 210 40% 96.1%; /* Secondary color */
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --destructive: 0 84.2% 60.2%; /* Destructive color (e.g., for errors) */
+  --destructive-foreground: 210 40% 98%;
+
+  --muted: 210 40% 96.1%; /* Muted color */
+  --muted-foreground: 215.4 16.3% 46.9%;
+
+  --accent: 210 40% 96.1%; /* Accent color */
+  --accent-foreground: 222.2 47.4% 11.2%;
+
+  --popover: 0 0% 100%; /* Popover background */
+  --popover-foreground: 222.2 84% 4.9%;
+
+  --card: 0 0% 100%; /* Card background */
+  --card-foreground: 222.2 84% 4.9%;
+
+  --border: 214.3 31.8% 91.4%; /* Border color */
+  --input: 214.3 31.8% 91.4%; /* Input background */
+  --ring: 221.2 83.2% 53.3%; /* Focus ring color */
+}
+
+.dark {
+  --background: 222.2 84% 4.9%; /* Dark mode background */
+  --foreground: 210 40% 98%; /* Dark mode text */
+
+  --primary: 217.2 91.2% 59.8%; /* Primary color (dark mode) */
+  --primary-foreground: 222.2 47.4% 11.2%;
+
+  --secondary: 217.2 32.6% 17.5%; /* Secondary color (dark mode) */
+  --secondary-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%; /* Destructive color (dark mode) */
+  --destructive-foreground: 210 40% 98%;
+
+  --muted: 217.2 32.6% 17.5%; /* Muted color (dark mode) */
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --accent: 217.2 32.6% 17.5%; /* Accent color (dark mode) */
+  --accent-foreground: 210 40% 98%;
+
+  --popover: 222.2 84% 4.9%; /* Popover background (dark mode) */
+  --popover-foreground: 210 40% 98%;
+
+  --card: 222.2 84% 4.9%; /* Card background (dark mode) */
+  --card-foreground: 210 40% 98%;
+
+  --border: 217.2 32.6% 17.5%; /* Border color (dark mode) */
+  --input: 217.2 32.6% 17.5%; /* Input background (dark mode) */
+  --ring: 224.3 76.3% 48%; /* Focus ring color (dark mode) */
+}
+
+/* Base styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: hsl(var(--background));
+  flex-grow: 1;
+}
+
+/* Code styles */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Ensure dropdown has consistent gray background */
+.dropdown-container {
+  position: relative;
+  display: block !important;
+  z-index: 50 !important;
+}
+
+/* Style for select dropdown */
+select {
+  background-color: #2a2a2a !important; /* Same gray color */
+  color: white !important;
+  border: 1px solid #ffffff30 !important;
+  border-radius: 6px;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 100 !important;
+  position: relative;
+}
+
+/* Ensure dropdown options have the same gray background */
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #2a2a2a !important; /* Consistent gray */
+  border: 1px solid #ffffff30;
+  border-radius: 5px;
+  z-index: 1000 !important;
+  display: block !important;
+  overflow: visible !important;
+  visibility: visible !important;
+}
+
+/* Style for dropdown items */
+.dropdown-options div {
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  background-color: #2a2a2a !important; /* Consistent gray */
+}
+
+/* Hover effect */
+.dropdown-options div:hover {
+  background: #3a3a3a !important; /* Slightly lighter gray */
+}
+
+/* Prevent parent containers from hiding dropdown */
+.container,
+.main-wrapper,
+body {
+  overflow: visible !important;
+}

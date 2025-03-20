@@ -1,0 +1,22 @@
+blinker==1.9.0
+click==8.1.8
+Flask==3.1.0
+itsdangerous==2.2.0
+Jinja2==3.1.5
+MarkupSafe==3.0.2
+Werkzeug==3.1.3
+PyJWT
+apscheduler
+flask_sqlalchemy
+requests
+flask-restx
+flask-cors    # (Needed for cross-origin requests, important for frontend-backend)
+flask-migrate # (For handling database migrations)
+flask-jwt-extended # (Better JWT handling)
+python-dotenv # (For managing environment variables)
+gunicorn      # (WSGI server for production)
+sendgrid
+httpx
+python-dotenv
+psycopg2-binary
+aiohttp

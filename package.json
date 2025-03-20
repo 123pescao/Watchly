@@ -1,0 +1,15 @@
+{
+  "name": "prototipo",
+  "version": "1.0.0",
+  "description": "## Overview This is a simple **Website Monitoring Alert System** that allows users to track the uptime and response time of websites. The system notifies users when a website is down and provides real-time status updates.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "wrangler": "^3.110.0"
+  }
+}
