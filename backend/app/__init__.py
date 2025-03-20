@@ -41,7 +41,7 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY", "supersecretkey")
 
-    allowed_origins = os.getenv("FRONTEND_URL", "http://localhost:3000,https://6f4c26cc.prototipo-7t0.pages.dev/").split(",")
+    allowed_origins = os.getenv("FRONTEND_URL", "http://localhost:3000,https://watchly-app.pages.dev").split(",")
 
     CORS(app, resources={r"/*": {"origins": allowed_origins}},
             supports_credentials=True,
