@@ -109,27 +109,27 @@ async def check_for_alert(website_id, alert_type, app):
         uptime_percent = f"{(latest_metric.uptime * 100):.1f}%" if latest_metric else "N/A"
         response_time = f"{latest_metric.response_time:.2f} ms" if latest_metric and latest_metric.response_time > 0 else "N/A"
 
-        existing_alert = Alert.query.filter_by(
+        existing_alert = db.session.query(Alert).filter_by(
             website_id=website_id,
             alert_type="Website Down",
             status="unresolved"
         ).first()
 
+        now = datetime.utcnow()
         subject = ""
         content = ""
 
         if alert_type == "Website Down":
-            now = datetime.utcnow()
-
             if existing_alert:
+                # Check if a reminder email should be sent (every 6 hours)
                 last_sent_time = existing_alert.timestamp
                 time_since_last_email = now - last_sent_time
 
-                if time_since_last_email < timedelta(minutes=30):
+                if time_since_last_email < timedelta(hours=6):
                     logger.info(f"Skipping duplicate 'Website Down' alert for {website.url} (Last email sent {time_since_last_email.seconds // 60} min ago)")
                     return
 
-                existing_alert.timestamp = now
+                existing_alert.timestamp = now  # Update last reminder timestamp
                 db.session.commit()
                 logger.info(f"⚠️ Reminder: {website.url} is STILL DOWN. Sending reminder email.")
 
@@ -141,15 +141,16 @@ async def check_for_alert(website_id, alert_type, app):
                 - Uptime: {uptime_percent}
                 - Response Time: {response_time}
 
-                Regards,  
+                Regards,
                 **Watchly Monitoring**
                 """
             else:
+                # Create a new alert only if one doesn't already exist
                 new_alert = Alert(
                     website_id=website_id,
                     alert_type=alert_type,
                     status="unresolved",
-                    timestamp=now,
+                    timestamp=now
                 )
                 db.session.add(new_alert)
                 db.session.commit()
@@ -185,11 +186,12 @@ async def check_for_alert(website_id, alert_type, app):
                 - Uptime: {uptime_percent}
                 - Response Time: {response_time}
 
-                Regards,
+                Regards,  
                 **Watchly Monitoring**
                 """
 
-        if subject and content:  # Ensures subject and content are set before sending email
+        # Send email if there's content to send
+        if subject and content:
             logger.info(f"🔄 Sending alert email via Cloudflare Worker to {user.email} for {website.url}")
             result = await send_alert_email(user.email, subject, content)
 
@@ -197,7 +199,6 @@ async def check_for_alert(website_id, alert_type, app):
                 logger.info(f"📨 Email Sent Successfully to {user.email}")
             else:
                 logger.error(f"❌ Email Sending Failed for {user.email}")
-
 
 def run_monitoring_task(app):
     """Runs the async check_all_websites() function in a synchronous context."""
